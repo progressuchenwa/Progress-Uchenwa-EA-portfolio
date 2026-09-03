@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Progress Uchenwa: AI-Powered Executive Assistant | Executive Operations</title>
+<meta id="metaDescription" name="description" content="Progress Uchenwa is an AI-powered Executive Assistant specializing in executive operations, founder support, workflow and project coordination for founders, executives and growing businesses.">
+<meta property="og:title" content="Progress Uchenwa: AI-Powered Executive Assistant">
+<meta property="og:description" content="Executive Operations | Founder Support | Workflow & Project Coordination">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/hero-portrait.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAVIGATION (static, not content-driven, per approved brief) ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Progress Uchenwa</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#work">Project Samples</a>
+      <a href="#desk">From My Desk</a>
+      <a href="#connect" class="nav-cta">Let's Connect</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navMobile" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#work">Project Samples</a>
+    <a href="#tools">Tools & Systems</a>
+    <a href="#beyond">Beyond Executive Operations</a>
+    <a href="#desk">From My Desk</a>
+    <a href="#connect" class="nav-cta">Let's Connect</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text reveal" id="heroText"></div>
+      <div class="hero-image reveal" id="heroImage">
+        <div class="hero-image-glow" aria-hidden="true"></div>
+        <img src="assets/hero-portrait.png" alt="Portrait of Progress Uchenwa, Executive Assistant">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. POSITIONING STRIP (marquee) ============ -->
+  <section class="marquee-strip" aria-label="Areas of focus">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </section>
+
+  <!-- ============ 3. ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="section-inner about-grid">
+      <div class="about-image reveal">
+        <img src="assets/about-portrait.jpg" alt="Portrait of Progress Uchenwa in a professional office setting">
+      </div>
+      <div class="about-text reveal" id="aboutText"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. MY APPROACH (animated workflow) ============ -->
+  <section class="approach" id="approach">
+    <div class="section-inner">
+      <div id="approachHeader"></div>
+      <ol class="workflow-timeline" id="workflowTimeline"></ol>
+    </div>
+  </section>
+
+  <!-- ============ 5. EXECUTIVE CAPABILITIES ============ -->
+  <section class="capabilities" id="capabilities">
+    <div class="section-inner">
+      <div id="capabilitiesHeader"></div>
+      <div class="capability-grid" id="capabilityGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 6. SELECTED RESULTS ============ -->
+  <section class="results" id="results">
+    <div class="section-inner">
+      <div id="resultsHeader"></div>
+      <div class="results-grid" id="resultsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 7. PROJECT SAMPLES ============ -->
+  <section class="work" id="work">
+    <div class="section-inner">
+      <div id="workHeader"></div>
+    </div>
+    <div id="caseStudies"></div>
+  </section>
+
+  <!-- ============ 8. TOOLS & SYSTEMS ============ -->
+  <section class="tools" id="tools">
+    <div class="section-inner">
+      <div id="toolsHeader"></div>
+    </div>
+    <div class="tools-strip" aria-label="Tools and platforms">
+      <div class="tools-track" id="toolsTrack"></div>
+    </div>
+  </section>
+
+  <!-- ============ 8. BEYOND EXECUTIVE OPERATIONS ============ -->
+  <section class="beyond" id="beyond">
+    <div class="section-inner beyond-inner reveal" id="beyondContent"></div>
+  </section>
+
+  <!-- ============ 9. FROM MY DESK ============ -->
+  <section class="desk" id="desk">
+    <div class="section-inner">
+      <div id="deskHeader"></div>
+    </div>
+    <div class="desk-strip" id="deskStrip"></div>
+  </section>
+
+  <!-- ============ 10. LET'S CONNECT ============ -->
+  <section class="connect" id="connect">
+    <div class="connect-inner">
+      <div class="connect-text reveal" id="connectContent"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Progress Uchenwa. All rights reserved.</p>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
