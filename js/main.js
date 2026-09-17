@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- 6. Selected Results ---- */
+  /* ---- 6. Selected Results (animated horizontal bars) ---- */
   if (typeof siteContent_results !== 'undefined') {
     const r = siteContent_results;
     document.getElementById('resultsHeader').innerHTML =
@@ -141,13 +141,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const grid = document.getElementById('resultsGrid');
     grid.innerHTML = r.items.map(function (item) {
+      const pct = parseInt(item.stat, 10) || 0;
       return (
-        '<div class="result-card reveal">' +
-          '<span class="result-stat">' + esc(item.stat) + '</span>' +
-          '<span class="result-label">' + esc(item.label) + '</span>' +
+        '<div class="result-bar reveal" data-percent="' + pct + '">' +
+          '<div class="result-bar-head">' +
+            '<span class="result-bar-label">' + esc(item.label) + '</span>' +
+            '<span class="result-bar-value">' + esc(item.stat) + '</span>' +
+          '</div>' +
+          '<div class="result-bar-track"><div class="result-bar-fill"></div></div>' +
         '</div>'
       );
     }).join('');
+
+    /* Grow each bar to its real value once it scrolls into view */
+    const bars = grid.querySelectorAll('.result-bar');
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const barIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const fill = entry.target.querySelector('.result-bar-fill');
+            const pct = entry.target.getAttribute('data-percent');
+            window.requestAnimationFrame(function () { fill.style.width = pct + '%'; });
+            barIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      bars.forEach(function (el) { barIO.observe(el); });
+    } else {
+      bars.forEach(function (el) {
+        const fill = el.querySelector('.result-bar-fill');
+        fill.style.width = el.getAttribute('data-percent') + '%';
+      });
+    }
   }
 
   /* ---- 7. Project Samples ---- */
@@ -204,35 +229,44 @@ document.addEventListener('DOMContentLoaded', function () {
       '<a href="#" id="creativePortfolioLink" class="btn btn-outline" target="_blank" rel="noopener">' + esc(b.ctaLabel) + '</a>';
   }
 
-  /* ---- 10. From My Desk ---- */
-  if (typeof siteContent_desk !== 'undefined') {
-    const d = siteContent_desk;
-    document.getElementById('deskHeader').innerHTML =
-      '<p class="eyebrow">' + esc(d.eyebrow) + '</p>' +
-      '<h2 class="section-headline">' + esc(d.headline) + '</h2>' +
-      '<p class="body-text work-intro">' + esc(d.intro) + '</p>';
+  /* ---- 9B. What Clients Say (testimonial) ---- */
+  if (typeof siteContent_testimonial !== 'undefined') {
+    const t = siteContent_testimonial;
+    const list = document.getElementById('testimonialList');
+    document.getElementById('testimonialHeader').innerHTML =
+      '<p class="eyebrow">' + esc(t.eyebrow) + '</p>' +
+      '<h2 class="section-headline">' + esc(t.headline) + '</h2>';
+    if (list) {
+      list.innerHTML = t.items.map(function (item) {
+        return (
+          '<figure class="testimonial-card reveal">' +
+            '<blockquote>' + esc(item.quote) + '</blockquote>' +
+            '<figcaption>' + esc(item.name) + '</figcaption>' +
+          '</figure>'
+        );
+      }).join('');
+    }
   }
 
-  if (typeof fromMyDeskItems !== 'undefined') {
-    const deskStrip = document.getElementById('deskStrip');
-    deskStrip.innerHTML = fromMyDeskItems.map(function (item) {
-      const hasLink = item.linkedinUrl && item.linkedinUrl.trim().length > 0;
-      const linkHtml = hasLink
-        ? '<a href="' + esc(item.linkedinUrl) + '" target="_blank" rel="noopener">Read on LinkedIn</a>'
-        : '<span class="desk-pending">Link pending</span>';
-      const imageHtml = item.image
-        ? '<div class="desk-card-image"><img src="' + esc(item.image) + '" alt="" loading="lazy"></div>'
-        : '';
-      return (
-        '<article class="desk-card">' +
-          imageHtml +
-          '<span class="desk-category">' + esc(item.category) + '</span>' +
-          '<h3>' + esc(item.title) + '</h3>' +
-          '<p>' + esc(item.excerpt) + '</p>' +
-          '<div class="desk-meta"><span>' + esc(item.date) + '</span>' + linkHtml + '</div>' +
-        '</article>'
-      );
-    }).join('');
+  /* ---- From My Desk: intentionally not rendered right now ----
+     The section is hidden, not deleted. siteContent_desk and
+     fromMyDeskItems still exist in content.js with restore
+     instructions. Once real LinkedIn posts are ready, restore
+     the #desk section in index.html and re-add the render block
+     that used to live here (see project notes / ask Claude). */
+
+  /* ---- 10B. Final CTA (closing value statement) ---- */
+  if (typeof siteContent_closing !== 'undefined') {
+    const cl = siteContent_closing;
+    const closingEl = document.getElementById('closingContent');
+    if (closingEl) {
+      let html = '<p class="eyebrow">' + esc(cl.eyebrow) + '</p>' +
+        '<h2 class="section-headline closing-headline">' + esc(cl.headline) + '</h2>';
+      cl.paragraphs.forEach(function (p) {
+        html += '<p class="body-text">' + esc(p) + '</p>';
+      });
+      closingEl.innerHTML = html;
+    }
   }
 
   /* ---- 11. Let's Connect ---- */
@@ -244,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<div class="connect-actions">' +
         '<a href="#" id="bookCallLink" class="btn btn-primary-inverse" target="_blank" rel="noopener">' + esc(c.ctaBookLabel) + '</a>' +
         '<a href="#" id="emailLink" class="btn btn-outline-inverse">' + esc(c.ctaEmailLabel) + '</a>' +
-        '<a href="#" id="linkedinLink" class="btn btn-outline-inverse" target="_blank" rel="noopener">' + esc(c.ctaLinkedinLabel) + '</a>' +
+        '<a href="#" id="upworkLink" class="btn btn-outline-inverse" target="_blank" rel="noopener">' + esc(c.ctaUpworkLabel) + '</a>' +
       '</div>';
   }
 
@@ -252,11 +286,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (typeof contactInfo !== 'undefined') {
     const bookCallLink = document.getElementById('bookCallLink');
     const emailLink = document.getElementById('emailLink');
-    const linkedinLink = document.getElementById('linkedinLink');
+    const upworkLink = document.getElementById('upworkLink');
     const creativeLink = document.getElementById('creativePortfolioLink');
     if (bookCallLink && contactInfo.calendlyUrl) bookCallLink.href = contactInfo.calendlyUrl;
     if (emailLink && contactInfo.email) emailLink.href = 'mailto:' + contactInfo.email;
-    if (linkedinLink && contactInfo.linkedinUrl) linkedinLink.href = contactInfo.linkedinUrl;
+    if (upworkLink && contactInfo.upworkUrl) upworkLink.href = contactInfo.upworkUrl;
+    /* LinkedIn is intentionally not wired to any button right now.
+       contactInfo.linkedinVisible is false because Progress does
+       not currently have access to her LinkedIn account. To bring
+       the button back later: add a "Connect on LinkedIn" link with
+       id="linkedinLink" back into the Connect section in
+       index.html and js/main.js, then set linkedinVisible to true. */
     if (creativeLink) {
       if (contactInfo.creativePortfolioUrl) {
         creativeLink.href = contactInfo.creativePortfolioUrl;

@@ -58,9 +58,30 @@ const siteContent_about = {
   paragraphs: [
     "I support founders, executives and growing teams by taking ownership of the systems behind the work, including calendars, inboxes, CRM, documentation, research and project coordination, so decisions move faster and nothing important falls through.",
     "My approach combines traditional executive support with AI-powered workflows, using structured systems that summarize, prioritize and recommend next actions, not just track tasks.",
-    "I started my career as a general virtual assistant, and that breadth of experience taught me to look beyond individual tasks and understand how different parts of a business connect. Since then, I've supported founders and CEOs across construction, real estate, AI, and healthcare, and I've found that my strongest work happens when I can bring structure to complexity, anticipate what is needed, and solve the problem rather than simply manage the task."
+    "I started my career as a general virtual assistant, taking on whatever a business needed done. That early exposure to different tasks, tools and industries taught me to look beyond individual requests and understand how the different parts of a business connect. As my experience grew, I moved into Executive Assistant and Executive Operations work, supporting founders, CEOs and executives who needed someone to think alongside them, not just carry out instructions.",
+    "Somewhere in that transition, I noticed the trait that shapes most of how I work: I am resourceful. When an executive gives me a problem, my instinct is to figure it out. If I do not know something, I research it. If information is scattered, I find it and bring it together. If a process is unclear, I work through it until it makes sense. If something needs following up, I follow it through until it is done. This is a large part of why executives trust me with a wide range of responsibilities.",
+    "But that same resourcefulness can quietly become a weakness. Being comfortable figuring things out can make it tempting to want to handle everything personally, simply because I know I can. Over time I learned that being an effective Executive Assistant is not about proving I can do it all. It is about knowing what I should handle myself, what should be delegated, what can be automated, what technology can help with, and what genuinely needs the executive's direct attention.",
+    "That shift changed how I think about the work. I no longer measure executive support only by tasks completed. I think about understanding the bigger picture, identifying what actually matters, building better systems for recurring work, organizing information so it is usable, closing loops instead of leaving them open, and making sure the important things keep moving even when I am not the one moving them. In practice, that means solving the problem rather than simply managing the task."
   ],
   placeholderNote: ""
+};
+
+
+/* ---------------------------------------------------------------
+   3B. WHAT CLIENTS SAY - a real, complete testimonial
+   Add more entries later by copying the object inside "items".
+   Only ever use testimonials you have actually received; never
+   invent a quote or attribute a name to a made-up person.
+----------------------------------------------------------------- */
+const siteContent_testimonial = {
+  eyebrow: "What clients say",
+  headline: "A few words from someone I've supported.",
+  items: [
+    {
+      quote: "Progress has been a trusted member of our team, providing executive support while contributing to AI systems and process development. She has experience with calendar and inbox management, meeting coordination, research, CRM updates, project tracking, travel coordination, documentation and client follow-up and much more. She handles confidential information carefully, communicates clearly and keeps priorities moving. Progress also supports AI projects by reviewing business processes, identifying repetitive work, developing prompts, testing AI workflows and documenting systems through clear SOPs. She learns new tools quickly, asks thoughtful questions and applies feedback well. I confidently recommend her for executive support, operations and AI workflow projects.",
+      name: "Monica M."
+    }
+  ]
 };
 
 
@@ -118,9 +139,10 @@ const siteContent_capabilities = {
 const siteContent_results = {
   eyebrow: "Selected results",
   headline: "Results at a glance.",
-  intro: "Measurable outcomes from my professional experience across past Executive Assistant and Operations roles.",
+  intro: "Selected, verified outcomes from across my Executive Assistant and Operations roles. These are not from a single client or project, and they are not averages, they are individual results I can stand behind.",
   items: [
     { stat: "30%", label: "Greater operational efficiency" },
+    { stat: "30%", label: "Reduction in administrative delays" },
     { stat: "40%", label: "Fewer scheduling conflicts" },
     { stat: "40%", label: "Higher on-time task completion" },
     { stat: "25%", label: "Reduction in bid and documentation turnaround time" },
@@ -262,11 +284,25 @@ const siteContent_beyond = {
 
 
 /* ---------------------------------------------------------------
-   10. FROM MY DESK - manually add LinkedIn posts or professional notes
+   10. FROM MY DESK (currently hidden, not deleted)
    -----------------------------------------------------------
-   Copy the block below, paste it above "Placeholder 1", and fill
-   in your own details. Delete the placeholder entries once you
-   have real posts in place.
+   This section is temporarily off the live page because
+   Progress does not currently have access to her LinkedIn
+   account to source real posts. The content structure below is
+   kept exactly as it was so the section can be restored later
+   with zero rebuilding.
+
+   TO BRING THIS SECTION BACK ONCE LINKEDIN ACCESS RETURNS:
+   1. Fill in real entries in fromMyDeskItems below (category,
+      title, excerpt in your own words, date, linkedinUrl, and
+      an optional image).
+   2. In index.html, restore the "From My Desk" <section id="desk">
+      block (see the site's version history / ask Claude for it).
+   3. In js/main.js, restore the two render blocks that build
+      #deskHeader and #deskStrip from siteContent_desk and
+      fromMyDeskItems.
+   4. Add "From My Desk" back into the desktop and mobile nav
+      menus in index.html if you want it in the navigation.
 
    Fields:
    - category: short label, e.g. "Workflow", "AI in Ops", "Productivity"
@@ -283,43 +319,34 @@ const siteContent_desk = {
   intro: "Selected notes and posts on executive operations, workflow design, and working with AI."
 };
 
-const fromMyDeskItems = [
-  {
-    category: "Placeholder",
-    title: "Add your first LinkedIn post here",
-    excerpt: "Replace this card with a real excerpt from a LinkedIn post you've written on executive operations, workflow design, or AI-powered administration.",
-    date: "Add date",
-    linkedinUrl: "",
-    image: null
-  },
-  {
-    category: "Placeholder",
-    title: "Add a second post here",
-    excerpt: "Each card in this section is manually added by editing this file. No rebuild of the website is required.",
-    date: "Add date",
-    linkedinUrl: "",
-    image: null
-  },
-  {
-    category: "Placeholder",
-    title: "Add a third post here",
-    excerpt: "Aim for a short, thoughtful excerpt in your own words rather than a full repost of the LinkedIn content.",
-    date: "Add date",
-    linkedinUrl: "",
-    image: null
-  }
-];
+const fromMyDeskItems = [];
 
 
 /* ---------------------------------------------------------------
-   11. LET'S CONNECT - the closing section
+   10B. FINAL CTA - the closing value statement, right before
+   the contact section
+----------------------------------------------------------------- */
+const siteContent_closing = {
+  eyebrow: "Why work with me",
+  headline: "More structure behind the work. More room for the work that matters.",
+  paragraphs: [
+    "When you are managing a growing business, the details can quickly compete with the decisions that actually need your attention.",
+    "I help founders and executives take control of the moving parts behind their work, from calendars and communication to projects, research, documentation, CRM, follow-ups and AI-assisted workflows.",
+    "The goal is simple: you have a reliable person making sure the details are handled, the information is organized and the important things keep moving.",
+    "If that is the kind of support you are looking for, let's have a conversation."
+  ]
+};
+
+
+/* ---------------------------------------------------------------
+   11. LET'S CONNECT - the closing contact section
 ----------------------------------------------------------------- */
 const siteContent_connect = {
   eyebrow: "Let's connect",
   headline: "If you're looking for an Executive Assistant who brings structure, initiative and operational thinking, let's talk.",
   ctaBookLabel: "Book a Clarity Call",
-  ctaEmailLabel: "Email me",
-  ctaLinkedinLabel: "Connect on LinkedIn"
+  ctaEmailLabel: "Email Me",
+  ctaUpworkLabel: "View My Upwork Profile"
 };
 
 
@@ -329,12 +356,20 @@ const siteContent_connect = {
    Executive Operations, and Let's Connect all pull from here.
    Update a link once, in this one place, and every button that
    uses it updates automatically.
+
+   linkedinVisible is set to false because Progress does not
+   currently have access to her LinkedIn account. The URL stays
+   here so the "Connect on LinkedIn" button can be restored
+   later just by flipping this to true and adding the button
+   back in js/main.js and index.html.
 ----------------------------------------------------------------- */
 const contactInfo = {
   email: "Progressuchenwa@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/progress-uchenwa/",
+  linkedinVisible: false,
   calendlyUrl: "https://calendly.com/progressuchenwa/30min?month=2026-09",
-  creativePortfolioUrl: "https://canva.link/6343tfelmxw5k7b"
+  creativePortfolioUrl: "https://canva.link/6343tfelmxw5k7b",
+  upworkUrl: "https://www.upwork.com/freelancers/~0174956771173a3a84?mp_source=share"
 };
 
 
